@@ -8,5 +8,7 @@ package com.dkit.oopca5.client;
 
 public class CAOClient
 {
-    
+    public static void main(String[] args) {
+
+    }
 }

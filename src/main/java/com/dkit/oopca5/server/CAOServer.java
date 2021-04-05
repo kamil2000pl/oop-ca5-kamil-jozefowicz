@@ -6,12 +6,14 @@ package com.dkit.oopca5.server;
  */
 
 import java.util.List;
+import com.dkit.oopca5.Exceptions.DaoException;
+import com.dkit.oopca5.DTOs.*;
 
 public class CAOServer
 {
     public static void main(String[] args) {
 
-        CourseDaoInterface ICourseDao = MySqlCourseDao();
+        CourseDaoInterface ICourseDao = new MySqlCourseDao();
         try
         {
             System.out.println("\nCall findAllCourses()");
@@ -33,6 +35,8 @@ public class CAOServer
 
     private static void displayCourses(List<Course> courses)
     {
-
+        System.out.printf("%-10s%8s %-50s%-30s\n", "CourseID", "Level", "Title", "Institute");
+        for (Course c : courses)
+            System.out.printf("%-10s%8d %-50s%-30s\n", c.getCourseid(), c.getLevel(), c.getTitle(), c.getInstitution());
     }
 }

@@ -38,6 +38,11 @@ public class Course {
 
     public void setInstitution(String institution) { this.institution = institution; }
 
+    public void displayCourses()
+    {
+
+    }
+
     @Override
     public String toString()
     {
