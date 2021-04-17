@@ -1,4 +1,9 @@
 package com.dkit.oopca5.client;
+/*
+Kamil Jozefowicz
+D00229452
+ */
+
 
 /* The client package should contain all code and classes needed to run the Client
  */
@@ -44,10 +49,10 @@ public class CAOClient
                     System.out.print("Please enter option:");
                     option = keyboard.nextInt();
                     String command;
+                    boolean loggedIn = false;
+                    int loggedInCAONumber = 0;
 
-
-
-                    while (option != 0)
+                    while (option != 0 && !loggedIn)
                     {
                         if (option == 1)
                         {
@@ -64,12 +69,37 @@ public class CAOClient
                         }
                         if (option == 2)
                         {
-                            startMenuOption2();
+                            command = startMenuOption2();
+
+                            out.write(command+"\n");  // write command to socket, and newline terminator
+                            out.flush();              // flush (force) the command over the socket
+
+                            Scanner inStream = new Scanner(socket.getInputStream());  // wait for, and retrieve the reply
+
+                            String RegisteredString = inStream.nextLine();
+                            if (RegisteredString.equals(CAOService.SUCCESSFUL_LOGIN))
+                            {
+                                loggedIn = true;
+                            }
+                            System.out.println("Client message: Response from server: " + RegisteredString);
+                            inStream.close();
                         }
                         System.out.println();
-                        printStartMenu();
-                        System.out.print("\nPlease enter option:");
-                        option = keyboard.nextInt();
+//                        printStartMenu();
+//                        System.out.print("\nPlease enter option:");
+//                        option = keyboard.nextInt();
+                    }
+                    while(option != 0 && loggedIn)
+                    {
+                        try
+                        {
+                            printLoggedInMenu();
+                            System.out.print("Please enter option:");
+                            option = keyboard.nextInt();
+
+                        } catch (Exception e) {
+                            System.out.println("\nInvalid option chosen(InputMismatchException)");
+                        }
                     }
                     out.write("TERMINATE\n");  // write command to socket, and newline terminator
                     out.flush();              // flush (force) the command over the socket
@@ -126,10 +156,24 @@ public class CAOClient
         return (CAOService.REGISTER_COMMAND + CAOService.BREAKING_CHARACTER + caoNumber + CAOService.BREAKING_CHARACTER + dateOfBirth + CAOService.BREAKING_CHARACTER + password);
     }
 
-    public void startMenuOption2()
+    public String startMenuOption2()
     {
+        Scanner keyboard = new Scanner(System.in);
 
+        System.out.println("LOGIN option chosen");
+
+        System.out.print("Enter your CAO Number: ");
+        int caoNumber = keyboard.nextInt();
+
+        System.out.print("Enter your date of birth in the format yyyy-mm-dd: ");
+        String dateOfBirth = keyboard.next();
+
+        System.out.print("Enter your password: ");
+        String password = keyboard.next();
+
+        return (CAOService.LOGIN_COMMAND + CAOService.BREAKING_CHARACTER + caoNumber + CAOService.BREAKING_CHARACTER + dateOfBirth + CAOService.BREAKING_CHARACTER + password);
     }
+
 
     public void sendCommand(String command)
     {
