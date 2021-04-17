@@ -1,4 +1,8 @@
 package com.dkit.oopca5.core;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 /*The core package should contain all of the classes
   that are shared between the Client and Server
