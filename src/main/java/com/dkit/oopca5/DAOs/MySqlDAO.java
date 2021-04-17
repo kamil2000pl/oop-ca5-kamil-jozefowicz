@@ -1,4 +1,8 @@
-package com.dkit.oopca5.server;
+package com.dkit.oopca5.DAOs;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 /*
 All of the database functionality should be here. You will need a DAO for each table that you are interacting with in the database
