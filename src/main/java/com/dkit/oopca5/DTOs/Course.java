@@ -1,4 +1,8 @@
 package com.dkit.oopca5.DTOs;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 import java.util.List;
 
