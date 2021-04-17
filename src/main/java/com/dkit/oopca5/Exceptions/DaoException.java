@@ -1,4 +1,8 @@
 package com.dkit.oopca5.Exceptions;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 /**
  * A 'homemade' Exception to report exceptions
