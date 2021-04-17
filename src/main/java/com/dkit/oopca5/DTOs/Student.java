@@ -1,4 +1,8 @@
 package com.dkit.oopca5.DTOs;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 public class Student {
     private int caoNumber;
