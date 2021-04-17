@@ -1,4 +1,8 @@
-package com.dkit.oopca5.server;
+package com.dkit.oopca5.DAOs;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.dkit.oopca5.DTOs.Course;
 import com.dkit.oopca5.Exceptions.DaoException;
 
