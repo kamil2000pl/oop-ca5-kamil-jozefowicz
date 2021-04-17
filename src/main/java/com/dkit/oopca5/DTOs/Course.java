@@ -1,5 +1,7 @@
 package com.dkit.oopca5.DTOs;
 
+import java.util.List;
+
 public class Course {
     private String courseid;
     private int level;
@@ -38,9 +40,11 @@ public class Course {
 
     public void setInstitution(String institution) { this.institution = institution; }
 
-    public void displayCourses()
+    public void displayCourses(List<Course> courses)
     {
-
+        System.out.printf("%-10s%8s %-50s%-30s\n", "CourseID", "Level", "Title", "Institute");
+        for (Course c : courses)
+            System.out.printf("%-10s%8d %-50s%-30s\n", c.getCourseid(), c.getLevel(), c.getTitle(), c.getInstitution());
     }
 
     @Override
