@@ -1,4 +1,8 @@
-package com.dkit.oopca5.server;
+package com.dkit.oopca5.DAOs;
+/*
+Kamil Jozefowicz
+D00229452
+ */
 
 import java.util.List;
 import com.dkit.oopca5.Exceptions.DaoException;
