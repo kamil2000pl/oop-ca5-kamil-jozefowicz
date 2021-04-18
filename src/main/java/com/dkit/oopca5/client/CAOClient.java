@@ -42,8 +42,6 @@ public class CAOClient
 
             while(option != 0)
             {
-                try
-                {
                     Scanner keyboard = new Scanner(System.in);
                     printStartMenu();
                     System.out.print("Please enter option:");
@@ -67,7 +65,7 @@ public class CAOClient
                             System.out.println("Client message: Response from server: " + RegisteredString);
                             inStream.close();
                         }
-                        if (option == 2)
+                        else if (option == 2)
                         {
                             command = startMenuOption2();
 
@@ -85,34 +83,27 @@ public class CAOClient
                             inStream.close();
                         }
                         System.out.println();
-//                        printStartMenu();
-//                        System.out.print("\nPlease enter option:");
-//                        option = keyboard.nextInt();
+                        if (!loggedIn) {
+                            printStartMenu();
+                        } else
+                        {
+                            printLoggedInMenu();
+                        }
+                        System.out.print("\nPlease enter option:");
+                        option = keyboard.nextInt();
                     }
                     while(option != 0 && loggedIn)
                     {
-                        try
-                        {
                             printLoggedInMenu();
                             System.out.print("Please enter option:");
                             option = keyboard.nextInt();
 
-                        } catch (Exception e) {
-                            System.out.println("\nInvalid option chosen(InputMismatchException)");
-                        }
                     }
                     out.write("TERMINATE\n");  // write command to socket, and newline terminator
                     out.flush();              // flush (force) the command over the socket
-//            Scanner inStream = new Scanner(socket.getInputStream());  // wait for, and retrieve the reply
                     os.close();
                     out.close();
                     socket.close();
-//                    os.close();
-//                    out.close();
-//                    socket.close();
-                } catch (Exception e) {
-                    System.out.println("\nInvalid option chosen(InputMismatchException)");
-                }
             }
 
 
