@@ -78,7 +78,11 @@ public class CAOClientHandler implements Runnable
 
                             Student student = IStudentDao.findStudent(caoNumber);
 
-                            if (caoNumber == student.getCaoNumber() && dateOfBirth.equals(student.getDateOfBirth()) && password.equals(student.getPassword()))
+                            if (student == null)
+                            {
+                                socketWriter.println(CAOService.FAILED_LOGIN);
+                            }
+                            else if (caoNumber == student.getCaoNumber() && dateOfBirth.equals(student.getDateOfBirth()) && password.equals(student.getPassword()))
                             {
                                 socketWriter.println(CAOService.SUCCESSFUL_LOGIN);
                             } else {
